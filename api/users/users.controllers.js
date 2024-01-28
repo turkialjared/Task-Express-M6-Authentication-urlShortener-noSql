@@ -4,8 +4,12 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 const hashpass = async (password) => {
-  const hashedpass = await bcrypt.hash(password, 10);
-  return hashedpass;
+  try {
+    const hashedpass = await bcrypt.hash(password, 10);
+    return hashedpass;
+  } catch (error) {
+    console.log(error);
+  }
 };
 const generateToken = (user) => {
   const payload = {
